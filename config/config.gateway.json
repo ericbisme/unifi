@@ -1,0 +1,13 @@
+{
+  "service": {
+    "dns": {
+      "forwarding": {
+        "options": [
+          "address=/ericbisme.net/192.168.10.128 # K8s Ingress",
+          "address=/pi.hole/192.168.10.128 # pi-hole address",
+          "server=/thepit.ericbisme.net/1.1.1.1"
+        ]
+      }
+    }
+  }
+}
