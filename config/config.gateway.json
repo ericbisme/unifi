@@ -9,5 +9,31 @@
         ]
       }
     }
+  },
+  "load-balance": {
+    "group": {
+      "wan_failover": {
+        "interface": {
+          "eth2": {
+            "route-test": {
+              "type": {
+                "ping": {
+                  "target": "8.8.8.8"
+                }
+              }
+            }
+          },
+          "eth3": {
+            "route-test": {
+              "type": {
+                "ping": {
+                  "target": "8.8.8.8"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
