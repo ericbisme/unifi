@@ -1,19 +1,108 @@
 {
   "system": {
     "name-server": [
-      "192.168.10.129",
+      "::1",
+      "127.0.0.1",
       "1.1.1.1",
-      "1.0.0.1"
-    ]
+      "8.8.8.8"
+    ],
+    "static-host-mapping": {
+      "host-name": {
+        "alertmanager.ericbisme.net": {
+          "alias": [
+            "alertmanager"
+          ],
+          "inet": [
+            "192.168.10.128"
+          ]
+        },
+        "books.ericbisme.net": {
+          "alias": [
+            "books"
+          ],
+          "inet": [
+            "192.168.10.128"
+          ]
+        },
+        "dns.ericbisme.net": {
+          "alias": [
+            "dns"
+          ],
+          "inet": [
+            "192.168.10.128"
+          ]
+        },
+        "grafana.ericbisme.net": {
+          "alias": [
+            "grafana"
+          ],
+          "inet": [
+            "192.168.10.128"
+          ]
+        },
+        "elasticsearch.ericbisme.net": {
+          "alias": [
+            "elasticsearch"
+          ],
+          "inet": [
+            "192.168.10.128"
+          ]
+        },
+        "kibana.ericbisme.net": {
+          "alias": [
+            "kibana"
+          ],
+          "inet": [
+            "192.168.10.128"
+          ]
+        },
+        "minio.ericbisme.net": {
+          "alias": [
+            "minio"
+          ],
+          "inet": [
+            "192.168.10.128"
+          ]
+        },
+        "plex.ericbisme.net": {
+          "alias": [
+            "plex"
+          ],
+          "inet": [
+            "192.168.10.128"
+          ]
+        },
+        "prometheus.ericbisme.net": {
+          "alias": [
+            "prometheus"
+          ],
+          "inet": [
+            "192.168.10.128"
+          ]
+        },
+        "traefik.ericbisme.net": {
+          "alias": [
+            "traefik"
+          ],
+          "inet": [
+            "192.168.10.128"
+          ]
+        }
+      }
+    }
   },
   "service": {
     "dns": {
       "forwarding": {
         "options": [
           "strict-order",
-          "address=/ericbisme.net/192.168.10.128 # K8s Ingress",
+          "domain-needed",
+          "bogus-priv",
+          "expand-hosts",
+          "local=/ericbisme.net/",
           "address=/pi.hole/192.168.10.128 # pi-hole address",
-          "server=/thepit.ericbisme.net/1.1.1.1"
+          "server=/thepit.ericbisme.net/1.1.1.1 # Acme DNS Challenge and OpenVPN",
+          "server=192.168.10.129 # Internal DNS pi-hole"
         ]
       }
     }
@@ -45,3 +134,4 @@
     }
   }
 }
+

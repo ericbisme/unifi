@@ -1,0 +1,23 @@
+{
+  "system": {
+    "name-server":
+      {{ name_server | to_nice_json }},
+
+    "static-host-mapping": {
+      "host-name":
+        {{ host_mappings | to_nice_json }}
+    }
+  },
+
+  "service": {
+    "dns": {
+      "forwarding": {
+        "options":
+          {{ dns_forwarding_options | to_nice_json}}
+      }
+    }
+  },
+  "load-balance":
+    {{ load_balancing | to_nice_json }}
+}
+

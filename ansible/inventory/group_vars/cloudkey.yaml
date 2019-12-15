@@ -1,0 +1,67 @@
+---
+
+host_mappings_loadbalancer: 192.168.10.128
+
+# These will be rendered on the USG as /etc/hosts entries
+host_mappings:
+  alertmanager.ericbisme.net:
+    alias:
+      - alertmanager
+    inet:
+      - "{{ host_mappings_loadbalancer }}"
+  books.ericbisme.net:
+    alias:
+      - books
+    inet:
+      - "{{ host_mappings_loadbalancer }}"
+  dns.ericbisme.net:
+    alias:
+      - dns
+    inet:
+      - "{{ host_mappings_loadbalancer }}"
+  grafana.ericbisme.net:
+    alias:
+      - grafana
+    inet:
+      - "{{ host_mappings_loadbalancer }}"
+  plex.ericbisme.net:
+    alias:
+      - plex
+    inet:
+      - "{{ host_mappings_loadbalancer }}"
+  prometheus.ericbisme.net:
+    alias:
+      - prometheus
+    inet:
+      - "{{ host_mappings_loadbalancer }}"
+  traefik.ericbisme.net:
+    alias:
+      - traefik
+    inet:
+      - "{{ host_mappings_loadbalancer }}"
+
+# These will end up in the USG /etc/dnsmasq.conf
+dns_forwarding_options:
+  - 'strict-order'
+  - 'domain-needed'
+  - 'bogus-priv'
+  - 'expand-hosts'
+  - 'local=/ericbisme.net/'
+  - 'address=/pi.hole/192.168.10.128 # pi-hole address'
+  - 'server=/thepit.ericbisme.net/1.1.1.1 # Acme DNS Challenge and OpenVPN'
+  - 'server=192.168.10.129 # Internal DNS pi-hole'
+
+load_balancing:
+  group:
+    wan_failover:
+      interface:
+        eth2:
+          route-test:
+            type:
+              ping:
+                target: "8.8.8.8"
+        eth3:
+          route-test:
+            type:
+              ping:
+                target: "8.8.8.8"
