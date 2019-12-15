@@ -18,6 +18,12 @@
     }
   },
   "load-balance":
-    {{ load_balancing | to_nice_json }}
+    {{ load_balancing | to_nice_json }},
+
+  "firewall":
+    {{ firewall | to_nice_json }},
+
+  "interfaces":
+    {{ interfaces | to_nice_json }}
 }
 
