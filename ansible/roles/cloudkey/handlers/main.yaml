@@ -34,5 +34,5 @@
       Cookie: "{{ unifi_login_response.set_cookie }}"
   register: unifi_command_response
   until: unifi_command_response.json.meta.rc == "ok"
-  #  delay: 60
-  #retries: 2
+  delay: 60
+  retries: 2
