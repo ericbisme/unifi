@@ -8,7 +8,7 @@
 - name: Unifi Controller login
   listen: "Reprovision USG"
   uri:
-    url: "{{ controller_uri }}"
+    url: "{{ controller_uri }}/api/login"
     method: POST
     body_format: json
     body:
@@ -23,7 +23,7 @@
 - name: Unifi Reprovision USG
   listen: "Reprovision USG"
   uri:
-    url: "{{ controller_uri }}"
+    url: "{{ controller_uri }}/api/s/default/cmd/devmgr"
     method: POST
     body_format: json
     body:
@@ -34,5 +34,5 @@
       Cookie: "{{ unifi_login_response.set_cookie }}"
   register: unifi_command_response
   until: unifi_command_response.json.meta.rc == "ok"
-  delay: 60
-  retries: 2
+  #  delay: 60
+  #retries: 2
